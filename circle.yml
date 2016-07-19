@@ -33,7 +33,7 @@ test:
     - bin/console cache:clear --env=prod --no-debug
     - chmod -R a+w var/cache
     # change permission of sessions directory
-    - chown -R www-data var/sessions
+    - sudo chown -R www-data var/sessions
   override:
     - ./bin/codecept build
     - ./bin/codecept run --verbose
