@@ -1,0 +1,19 @@
+php:
+  build: ./docker/php
+  volumes:
+    - ./:/var/www/symfony.demo
+  ports:
+    - "80:80"
+  links:
+    - selenium:selenium.demo
+
+selenium:
+  build: ./docker/selenium
+  volumes:
+    - ./:/data
+  ports:
+    - "4444:4444"
+    - "5900:5900"
+  extra_hosts:
+    - "symfony.demo:172.17.0.3"
+  privileged: true
