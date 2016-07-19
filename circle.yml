@@ -13,6 +13,11 @@ dependencies:
     - pecl install xdebug
     - cat ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini | sed -e "s/;//" > xdebug.ini
     - mv xdebug.ini ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
+    # selenium
+    - wget http://selenium-release.storage.googleapis.com/2.47/selenium-server-standalone-2.47.1.jar
+    - 'java -jar selenium-server-standalone-2.47.1.jar > /dev/null 2>&1':
+          background: true
+
   post:
     # configure virtual host
     - cp tests/_envs/circle/vhosts.conf /etc/apache2/sites-available/vhosts.conf
