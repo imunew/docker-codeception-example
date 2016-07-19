@@ -15,6 +15,7 @@
 /bin/*
 !bin/console
 !bin/symfony_requirements
+!bin/composer
 /vendor/
 /web/bundles/
 
