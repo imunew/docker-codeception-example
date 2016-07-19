@@ -28,6 +28,10 @@ dependencies:
     - sudo service apache2 restart
 
 test:
+  pre:
+    # warmup and change permission of cache directory
+    - bin/console cache:clear --env=prod --no-debug
+    - chmod -R a+w var/cache
   override:
     - ./bin/codecept build
     - ./bin/codecept run --verbose
