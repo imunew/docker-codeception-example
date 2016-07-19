@@ -28,5 +28,7 @@ dependencies:
 
 test:
   override:
-#    - ./bin/phpunit --coverage-text --coverage-clover=coverage.clover
-#    - ./bin/codecept run --verbose
+    - ./bin/codecept build
+    - ./bin/codecept run --verbose
+  post:
+    - cp -r tests/_output $CIRCLE_ARTIFACTS
