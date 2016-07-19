@@ -1,0 +1,18 @@
+machine:
+  php:
+    version: 5.6.2
+  timezone:
+    Asia/Tokyo
+
+dependencies:
+  pre:
+    # application
+    - sudo composer self-update
+    - pecl install xdebug
+    - cat ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini | sed -e "s/;//" > xdebug.ini
+    - mv xdebug.ini ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
+
+test:
+  override:
+#    - ./bin/phpunit --coverage-text --coverage-clover=coverage.clover
+#    - ./bin/codecept run --verbose
