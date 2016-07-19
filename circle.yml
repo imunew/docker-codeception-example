@@ -1,6 +1,8 @@
 machine:
   php:
     version: 5.6.2
+  hosts:
+    symfony.demo: 127.0.0.1
   timezone:
     Asia/Tokyo
 
@@ -11,6 +13,13 @@ dependencies:
     - pecl install xdebug
     - cat ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini | sed -e "s/;//" > xdebug.ini
     - mv xdebug.ini ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
+  post:
+    # configure virtual host
+    - cp tests/_envs/circle/vhosts.conf /etc/apache2/sites-available/vhosts.conf
+    - a2ensite vhosts.conf
+    - a2enmod rewrite
+    - ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/
+    - sudo service apache2 restart
 
 test:
   override:
