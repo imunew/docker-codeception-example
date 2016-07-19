@@ -1,6 +1,8 @@
 # Docker Codeception Example
 This is an example of [Codeception](http://codeception.com/) on docker containers.
 
+[![CircleCI](https://circleci.com/gh/imunew/docker-codeception-example.svg?style=svg)](https://circleci.com/gh/imunew/docker-codeception-example)
+
 ## Install
 ### VirtualBox
 Download installer and install.<br>
