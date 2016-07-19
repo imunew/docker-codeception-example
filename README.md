@@ -81,3 +81,5 @@ OK (2 tests, 5 assertions)
 - Run acceptance tests
   - Execute `bin/codecept run` command in php container.
 
+
+![codeception-demo.gif](./codeception-demo.gif)
