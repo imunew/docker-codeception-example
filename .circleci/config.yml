@@ -14,7 +14,7 @@ jobs:
           name: Setup environment
           command: |
             docker-compose up -d --build
-            docker-compose exec php composer install
+            docker-compose exec php composer install --no-interaction
       - run:
           name: Run tests
           command: |
