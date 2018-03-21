@@ -4,41 +4,11 @@ This is an example of [Codeception](http://codeception.com/) on docker container
 [![CircleCI](https://circleci.com/gh/imunew/docker-codeception-example.svg?style=svg)](https://circleci.com/gh/imunew/docker-codeception-example)
 
 ## Install
-### VirtualBox
+### Docker for Mac
 Download installer and install.<br>
-https://www.virtualbox.org/wiki/Downloads
-
-### Docker toolbox
-Download installer and install.<br>
-https://www.docker.com/products/docker-docker-compose
-
-The following components are installed.
-- Docker Engine
-- Compose
-- Machine
-- Kitematic
+https://docs.docker.com/docker-for-mac/install/
 
 ## Setup
-### Starting docker-machine
-```
-$ docker-machine start default
-```
-
-### Setting environment variables
-```
-$ docker-machine env default
-export DOCKER_TLS_VERIFY="1"
-export DOCKER_HOST="tcp://192.168.99.100:2376"
-export DOCKER_CERT_PATH="/path/to/home/.docker/machine/machines/default"
-export DOCKER_MACHINE_NAME="default"
-# Run this command to configure your shell:
-# eval $(docker-machine env default)
-```
-
-```
-$ eval $(docker-machine env default)
-```
-
 ### Starting Docker compose
 ```
 $ docker-compose up -d --build
@@ -47,28 +17,23 @@ $ docker-compose up -d --build
 ### Run php container and composer install
 
 ```
-$ docker-compose run php bash
-```
-
-```bash
-root@{container id}:/var/www/symfony.demo# bin/composer self-update
-root@{container id}:/var/www/symfony.demo# bin/composer install
+$ docker-compose exec php composer install
 ```
 
 ### Run acceptance tests
 ```bash
-root@{container id}:/var/www/symfony.demo# bin/codecept run
+$ docker-compose exec php bin/codecept run acceptance
 Codeception PHP Testing Framework v2.2.2
 Powered by PHPUnit 5.4.6 by Sebastian Bergmann and contributors.
 
-Acceptance Tests (2) -------------------------------------------------------------------------------------------------------------------------------
+Acceptance Tests (2) -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Testing acceptance
-✔ BlogCept: Open blog page and see article there (6.664s)
-✔ LoginCept: Login as admin to backend (10.1009s)
-----------------------------------------------------------------------------------------------------------------------------------------------------
+✔ BlogCept: Open blog page and see article there (4.411s)
+✔ LoginCept: Login as admin to backend (6.607s)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Time: 18.48 seconds, Memory: 13.25MB
+Time: 12.89 seconds, Memory: 10.00MB
 
 OK (2 tests, 5 assertions)
 ```
@@ -77,7 +42,7 @@ OK (2 tests, 5 assertions)
 - For Mac
   - Starting `Finder`.
   - Use `Connect to Server`.
-  - Input `vnc://${docker-machine ip default}:5900` to `Server Address`.
+  - Input `vnc://localhost:5900` to `Server Address`.
   - Input `secret` to `Password`.
 
 - Run acceptance tests
