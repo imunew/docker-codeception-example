@@ -23,7 +23,9 @@ dependencies:
     # configure virtual host
     - cp tests/_envs/circle/vhosts.conf /etc/apache2/sites-available/vhosts.conf
     - a2ensite vhosts.conf
+    - a2dissite default
     - a2enmod rewrite
+    - a2dismod php5
     - ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/
     - sudo service apache2 restart
 
