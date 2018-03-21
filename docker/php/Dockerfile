@@ -17,6 +17,4 @@ ADD ./symfony-demo.conf /etc/apache2/sites-available/symfony-demo.conf
 RUN a2ensite symfony-demo.conf
 RUN a2dissite 000-default.conf
 
-RUN usermod -u 1000 www-data
-
 EXPOSE 80
