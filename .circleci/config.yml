@@ -16,7 +16,7 @@ jobs:
             docker-compose up -d --build
             docker-compose exec php composer install --no-interaction
             docker-compose exec php bin/console cache:clear --env=prod --no-debug
-            docker-compose exec php chmod -R a+w var/cache
+            docker-compose exec php chmod -R a+w var/cache var/sessions
       - run:
           name: Run tests
           command: |
