@@ -1,0 +1,24 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    working_directory: ~/project
+    steps:
+      - checkout
+      - run:
+          name: Install Docker Compose
+          command: |
+            pip install --upgrade pip
+            pip install docker-compose
+      - run:
+          name: Setup environment
+          command: |
+            docker-compose up -d --build
+            docker-compose exec php composer install
+      - run:
+          name: Run tests
+          command: |
+            docker-compose exec php bin/codecept run acceptance
+            cp -R tests/_output /tmp/artifacts/
+      - store_artifacts:
+          path: /tmp/artifacts
